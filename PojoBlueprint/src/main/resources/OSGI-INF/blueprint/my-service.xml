@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint default-activation="eager" 
+            xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
+            xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0">
+
+    <bean id="serviceBean"
+        class="de.nierbeck.test.blueprint.jpa.MyServiceImpl">
+        <jpa:context unitname="store" property="entityManager" />
+        <tx:transaction method="*" value="Required" />
+    </bean>
+
+    <service ref="serviceBean" interface="de.nierbeck.test.blueprint.jpa.MyService" />
+
+</blueprint>
